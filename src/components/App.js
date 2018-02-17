@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Products from "./Products";
-import Header from './Header'
+import Header from './Header';
+// import Products from "./Products";
+import ProductsList from "./ProductsList";
 
 
 class App extends Component {
@@ -9,7 +10,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Products/>
+        {/*<Products/>*/}
+        <ProductsList />
       </div>
     );
   }
