@@ -18,12 +18,7 @@ const styles = theme => ({
         paddingBottom: 16,
         marginTop: theme.spacing.unit,
         flexGrow: 1,
-        // marginTop: 30,
     }),
-    // root: {
-    //     flexGrow: 1,
-    //     marginTop: 30,
-    // },
     paper: {
         padding: 16,
         textAlign: 'center',
@@ -32,6 +27,9 @@ const styles = theme => ({
     card: {
         minWidth: 275,
         maxWidth: 300
+    },
+    price: {
+        marginTop: theme.spacing.unit,
     },
     bullet: {
         display: 'inline-block',
@@ -75,7 +73,7 @@ class Products extends React.Component {
                                                         </Typography>
                                                     </Toolbar>
                                                 </AppBar>
-                                                <Typography variant="headline" gutterBottom>
+                                                <Typography variant="headline" gutterBottom className={classes.price}>
                                                     {value.price}zł<span> / {value.unit}</span>
                                                 </Typography>
 
