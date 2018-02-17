@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header';
 // import Products from "./Products";
-import ProductsList from "./ProductsList";
+// import ProductsList from "./ProductsList";
+import DeliveryForn from "./DeliveryForm";
 
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
       <div className="App">
         <Header />
         {/*<Products/>*/}
-        <ProductsList />
+        {/*<ProductsList />*/}
+        <DeliveryForn/>
       </div>
     );
   }
