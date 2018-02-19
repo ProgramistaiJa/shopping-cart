@@ -1,7 +1,7 @@
 //Actions for Products
 
 let nextProductId = 0;
-export const addProductToCart = product => {
+export const addDeliveryData = product => {
   return {
     type: 'ADD_PRODUCT_TO_CART',
     id: nextProductId++,

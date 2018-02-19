@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import {Link} from "react-router-dom";
 
 
 const styles = theme => ({
@@ -51,7 +52,12 @@ const ShoppingList = (props) => {
                         products.map(product=>product.price).reduce((prev,curr)=>prev + curr,0)
                         } zł
             </Typography>
-            <Button variant="raised" color="primary" className={classes.button}>
+            <Button
+                variant="raised"
+                color="primary"
+                className={classes.button}
+                component={Link} to="/deliveryform"
+            >
                 Dokończ zamówienie
             </Button>
         </Paper>

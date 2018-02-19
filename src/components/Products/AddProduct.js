@@ -10,7 +10,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
-import { addProductToCart } from '../../actions/productsActions';
+import { addDeliveryData } from '../../actions/productsActions';
 import store from '../../store/index';
 
 
@@ -67,7 +67,7 @@ class Products extends React.Component {
             'price': price,
         };
 
-        store.dispatch(addProductToCart(product));
+        store.dispatch(addDeliveryData(product));
         this.setState({productsInCart: this.state.productsInCart + 1 });
     };
 
