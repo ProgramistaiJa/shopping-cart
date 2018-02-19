@@ -11,7 +11,11 @@ const productsInCart = (state = [], action) => {
                     zip: action.zip,
                     voivodeship: action.voivodeship,
                     phone: action.phone,
-
+                    payment: action.value,
+                    nameoncard: action.nameoncard,
+                    creditcardnumber: action.creditcardnumber,
+                    expiration: action.expiration,
+                    cvv: action.cvv
                 }
             ];
 

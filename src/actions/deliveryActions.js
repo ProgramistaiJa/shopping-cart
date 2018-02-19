@@ -11,5 +11,11 @@ export const addDeliveryData = delivery => {
     zip: delivery.zip,
     voivodeship: delivery.voivodeship,
     phone: delivery.phone,
+    payment: delivery.payment,
+    value: delivery.value,
+    nameoncard: delivery.nameoncard,
+    creditcardnumber: delivery.creditcardnumber,
+    expiration: delivery.expiration,
+    cvv: delivery.cvv
   };
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Input, {InputLabel} from 'material-ui/Input';
-import {FormControl} from 'material-ui/Form';
+import { FormLabel, FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Select from 'material-ui/Select';
@@ -10,6 +10,8 @@ import Button from 'material-ui/Button';
 import {addDeliveryData} from "../../actions/deliveryActions";
 import store from "../../store";
 import {connect} from "react-redux";
+import Radio, { RadioGroup } from 'material-ui/Radio';
+
 
 
 const styles = theme => ({
@@ -33,6 +35,9 @@ const styles = theme => ({
             backgroundColor: 'primary',
         },
     },
+    group: {
+        margin: `${theme.spacing.unit}px 0`,
+    },
 });
 
 
@@ -44,10 +49,22 @@ class CustomizedInputs extends React.Component {
         zip: '',
         voivodeship: '',
         phone: '',
+        payment: '',
+        nameoncard: '',
+        creditcardnumber: '',
+        expiration: '',
+        cvv: ''
+
     };
 
     handleChange = name => event => {
+        console.log(name);
+        console.log(event);
         this.setState({[name]: event.target.value});
+    };
+
+    handleChangePayment = (event, value) => {
+        this.setState({ value });
     };
 
     handleSubmit = (event) => {
@@ -195,7 +212,103 @@ class CustomizedInputs extends React.Component {
                     </Paper>
 
                     <Paper className={classes.root} elevation={4}>
+                        <FormControl component="fieldset" required error className={classes.formControl}>
+                            <Typography variant="headline" component="h2">
+                                Płatność
+                            </Typography>
+                            <RadioGroup
+                                aria-label="gender"
+                                name="gender2"
+                                className={classes.group}
+                                value={this.state.value}
+                                onChange={this.handleChangePayment}
+                            >
+                                <FormControlLabel value="creditcard" control={<Radio color="primary" />} label="Karta kredytowa" />
+                                <FormControlLabel value="debitcard" control={<Radio color="primary" />} label="Karta debetowa" />
+                                <FormControlLabel value="paypal" control={<Radio color="primary" />} label="PayPal" />
 
+                            </RadioGroup>
+                            {/*<FormHelperText>You can display an error</FormHelperText>*/}
+                        </FormControl>
+                    </Paper>
+
+                    <Paper className={classes.root} elevation={4}>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel
+                                FormControlClasses={{
+                                    focused: classes.inputLabelFocused,
+                                }}
+                                htmlFor="nameoncard"
+                            >
+                                Nazwa karty
+                            </InputLabel>
+                            <Input
+                                value={this.state.nameoncard}
+                                onChange={this.handleChange('nameoncard')}
+                                classes={{
+                                    inkbar: classes.inputInkbar,
+                                }}
+                                id="nameoncard"
+                            />
+
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel
+                                FormControlClasses={{
+                                    focused: classes.inputLabelFocused,
+                                }}
+                                htmlFor="creditcardnumber"
+                            >
+                                Nr karty
+                            </InputLabel>
+                            <Input
+                                value={this.state.creditcardnumber}
+                                onChange={this.handleChange('creditcardnumber')}
+                                classes={{
+                                    inkbar: classes.inputInkbar,
+                                }}
+                                id="creditcardnumber"
+                            />
+
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel
+                                FormControlClasses={{
+                                    focused: classes.inputLabelFocused,
+                                }}
+                                htmlFor="expiration"
+                            >
+                                Data wygaśnięcia
+                            </InputLabel>
+                            <Input
+                                value={this.state.expiration}
+                                onChange={this.handleChange('expiration')}
+                                classes={{
+                                    inkbar: classes.inputInkbar,
+                                }}
+                                id="expiration"
+                            />
+
+                        </FormControl>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel
+                                FormControlClasses={{
+                                    focused: classes.inputLabelFocused,
+                                }}
+                                htmlFor="cvv"
+                            >
+                                CVV
+                            </InputLabel>
+                            <Input
+                                value={this.state.cvv}
+                                onChange={this.handleChange('cvv')}
+                                classes={{
+                                    inkbar: classes.inputInkbar,
+                                }}
+                                id="cvv"
+                            />
+
+                        </FormControl>
                     </Paper>
 
                     <Paper className={classes.root} elevation={4}>
