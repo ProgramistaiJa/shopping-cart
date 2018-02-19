@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import Input, {InputLabel} from 'material-ui/Input';
-import { FormLabel, FormControl, FormControlLabel, FormHelperText } from 'material-ui/Form';
+import { FormControl, FormControlLabel } from 'material-ui/Form';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Select from 'material-ui/Select';
@@ -11,6 +11,11 @@ import {addDeliveryData} from "../../actions/deliveryActions";
 import store from "../../store";
 import {connect} from "react-redux";
 import Radio, { RadioGroup } from 'material-ui/Radio';
+import { withRouter } from 'react-router-dom'
+import TextField from 'material-ui/TextField';
+import {Link} from "react-router-dom";
+import products from "../../utilities/productsList";
+import green from 'material-ui/colors/green';
 
 
 
@@ -38,8 +43,12 @@ const styles = theme => ({
     group: {
         margin: `${theme.spacing.unit}px 0`,
     },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 200,
+    },
 });
-
 
 class CustomizedInputs extends React.Component {
     state = {
@@ -53,13 +62,12 @@ class CustomizedInputs extends React.Component {
         nameoncard: '',
         creditcardnumber: '',
         expiration: '',
-        cvv: ''
+        cvv: '',
+        date: new Date()
 
     };
 
     handleChange = name => event => {
-        console.log(name);
-        console.log(event);
         this.setState({[name]: event.target.value});
     };
 
@@ -69,19 +77,20 @@ class CustomizedInputs extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-
         store.dispatch(addDeliveryData(this.state));
+
     };
 
 
     render() {
-        const {classes} = this.props;
+        const {classes, deliveries} = this.props;
+
 
         return (
             <div>
-                <form
-                    onSubmit={event => this.handleSubmit(event)}
-                >
+                {/*<form*/}
+                    {/*onSubmit={event => this.handleSubmit(event)}*/}
+                {/*>*/}
                     <Paper className={classes.root} elevation={4}>
                         <Typography variant="headline" component="h2">
                             Adres rozliczeniowy
@@ -226,102 +235,92 @@ class CustomizedInputs extends React.Component {
                                 <FormControlLabel value="creditcard" control={<Radio color="primary" />} label="Karta kredytowa" />
                                 <FormControlLabel value="debitcard" control={<Radio color="primary" />} label="Karta debetowa" />
                                 <FormControlLabel value="paypal" control={<Radio color="primary" />} label="PayPal" />
-
                             </RadioGroup>
-                            {/*<FormHelperText>You can display an error</FormHelperText>*/}
                         </FormControl>
                     </Paper>
 
                     <Paper className={classes.root} elevation={4}>
                         <FormControl className={classes.formControl}>
-                            <InputLabel
-                                FormControlClasses={{
-                                    focused: classes.inputLabelFocused,
+
+                            <TextField
+                                id="nameoncard"
+                                label="Nazwa karty"
+                                className={classes.textField}
+                                InputLabelProps={{
+                                    shrink: true,
                                 }}
-                                htmlFor="nameoncard"
-                            >
-                                Nazwa karty
-                            </InputLabel>
-                            <Input
                                 value={this.state.nameoncard}
                                 onChange={this.handleChange('nameoncard')}
-                                classes={{
-                                    inkbar: classes.inputInkbar,
-                                }}
-                                id="nameoncard"
+                                margin="normal"
                             />
 
                         </FormControl>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel
-                                FormControlClasses={{
-                                    focused: classes.inputLabelFocused,
-                                }}
-                                htmlFor="creditcardnumber"
-                            >
-                                Nr karty
-                            </InputLabel>
-                            <Input
-                                value={this.state.creditcardnumber}
-                                onChange={this.handleChange('creditcardnumber')}
-                                classes={{
-                                    inkbar: classes.inputInkbar,
-                                }}
-                                id="creditcardnumber"
-                            />
 
-                        </FormControl>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel
-                                FormControlClasses={{
-                                    focused: classes.inputLabelFocused,
-                                }}
-                                htmlFor="expiration"
-                            >
-                                Data wygaśnięcia
-                            </InputLabel>
-                            <Input
-                                value={this.state.expiration}
-                                onChange={this.handleChange('expiration')}
-                                classes={{
-                                    inkbar: classes.inputInkbar,
-                                }}
-                                id="expiration"
-                            />
+                        <TextField
+                            id="number"
+                            label="Nr karty"
+                            value={this.state.creditcardnumber}
+                            onChange={this.handleChange('creditcardnumber')}
+                            type="number"
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            margin="normal"
+                        />
 
-                        </FormControl>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel
-                                FormControlClasses={{
-                                    focused: classes.inputLabelFocused,
-                                }}
-                                htmlFor="cvv"
-                            >
-                                CVV
-                            </InputLabel>
-                            <Input
-                                value={this.state.cvv}
-                                onChange={this.handleChange('cvv')}
-                                classes={{
-                                    inkbar: classes.inputInkbar,
-                                }}
-                                id="cvv"
-                            />
+                        <TextField
+                            value={this.state.expiration}
+                            onChange={this.handleChange('expiration')}
+                            id="expirationdate"
+                            label="Data wygaśnięcia"
+                            type="date"
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
 
-                        </FormControl>
+                        <TextField
+                            id="cvv"
+                            label="CVV"
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            value={this.state.cvv}
+                            onChange={this.handleChange('cvv')}
+                            margin="normal"
+                        />
+
                     </Paper>
 
                     <Paper className={classes.root} elevation={4}>
-                        <Button
-                            type="submit"
-                            variant="raised"
-                            color="primary"
-                            className={classes.button}
-                        >
-                            Kupuję i Płacę
-                        </Button>
+                        {console.log(deliveries)}
+                        {console.log(products)}
+                        {
+                            deliveries.length>0
+                                ? (<Button
+                                    // type="submit"
+                                    variant="raised"
+                                    color="primary"
+                                    className={classes.button}
+                                    component={Link} to="/summary"
+                                >
+                                    Przejdź do podsumowania
+                                </Button>)
+                                :<Button
+                                    type="submit"
+                                    variant="raised"
+                                    className={classes.button}
+                                    onClick={event => this.handleSubmit(event)}
+                                >
+                                    Zapisz
+                                </Button>
+                        }
+
                     </Paper>
-                </form>
+                {/*</form>*/}
 
             </div>
         );

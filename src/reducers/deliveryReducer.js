@@ -15,7 +15,8 @@ const productsInCart = (state = [], action) => {
                     nameoncard: action.nameoncard,
                     creditcardnumber: action.creditcardnumber,
                     expiration: action.expiration,
-                    cvv: action.cvv
+                    cvv: action.cvv,
+                    date: action.date
                 }
             ];
 

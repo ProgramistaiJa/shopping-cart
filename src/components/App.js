@@ -9,7 +9,8 @@ import './App.css';
 import Header from '../containers/Header/NumberProductsInCart'
 import Products from "./Products/index";
 import ProductsList from '../containers/Products/VisibleProductLists'
-import DeliveryForm from './DeliveryForm';
+import DeliveryForm from '../containers/Deliveries/Delivery';
+import Summary from '../containers/Summary/VisibleSummary'
 
 class App extends Component {
     render() {
@@ -22,6 +23,7 @@ class App extends Component {
                     <Route exact path="/" component={Products}/>
                     <Route path="/deliveryform" component={DeliveryForm}/>
                     <Route path="/productslist" component={ProductsList}/>
+                    <Route path="/summary" component={Summary}/>
                 </div>
             </Router>
         );

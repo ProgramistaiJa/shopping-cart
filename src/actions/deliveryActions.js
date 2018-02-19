@@ -16,6 +16,7 @@ export const addDeliveryData = delivery => {
     nameoncard: delivery.nameoncard,
     creditcardnumber: delivery.creditcardnumber,
     expiration: delivery.expiration,
-    cvv: delivery.cvv
+    cvv: delivery.cvv,
+    date: delivery.date
   };
 };
