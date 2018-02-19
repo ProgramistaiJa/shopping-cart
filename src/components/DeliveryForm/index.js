@@ -40,7 +40,6 @@ class CustomizedInputs extends React.Component {
         zip: '',
         voivodeship: '',
         phone: '',
-
     };
 
     handleChange = name => event => {

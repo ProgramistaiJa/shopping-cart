@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-// import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ShoppingCart from 'material-ui-icons/ShoppingCart';
@@ -27,7 +26,7 @@ const styles = theme =>( {
 });
 
 function ButtonAppBar(props) {
-    const { classes } = props;
+    const { classes, products } = props;
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -38,8 +37,8 @@ function ButtonAppBar(props) {
                     <Typography variant="title" color="inherit" className={classes.flex}>
                         "Warzywniak"
                     </Typography>
-                    <IconButton className={classes.shoppingCart} /*className={classes.margin}*/ color="inherit" aria-label="Basket">
-                        <Badge badgeContent={4} color="secondary">
+                    <IconButton className={classes.shoppingCart} color="inherit" aria-label="Basket">
+                        <Badge badgeContent={products.length} color="secondary">
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
