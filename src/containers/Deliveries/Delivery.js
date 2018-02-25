@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import CustomizedInputs from '../../components/DeliveryForm';
+import Delivery from '../../components/Delivery/index';
 
 
 const mapStateToProps = state => {
@@ -10,6 +10,6 @@ const mapStateToProps = state => {
 };
 
 const Deliveries = connect(mapStateToProps /* mapDispatchToProps */)(
-    CustomizedInputs
+    Delivery
 );
 export default Deliveries;

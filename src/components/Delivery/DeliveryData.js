@@ -11,11 +11,13 @@ import {addDeliveryData} from "../../actions/deliveryActions";
 import store from "../../store";
 import {connect} from "react-redux";
 import Radio, { RadioGroup } from 'material-ui/Radio';
-import { withRouter } from 'react-router-dom'
+// import { withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import {Link} from "react-router-dom";
 import products from "../../utilities/productsList";
-import green from 'material-ui/colors/green';
+// import green from 'material-ui/colors/green';
+import MaskedInput from 'react-text-mask';
+import NumberFormat from 'react-number-format';
 
 
 
@@ -50,7 +52,7 @@ const styles = theme => ({
     },
 });
 
-class CustomizedInputs extends React.Component {
+class DeliveryData extends React.Component {
     state = {
         name: '',
         address: '',
@@ -83,7 +85,7 @@ class CustomizedInputs extends React.Component {
 
 
     render() {
-        const {classes, deliveries} = this.props;
+        const {classes, deliveries, inputRef, ...other} = this.props;
 
 
         return (
@@ -298,27 +300,14 @@ class CustomizedInputs extends React.Component {
                     <Paper className={classes.root} elevation={4}>
                         {console.log(deliveries)}
                         {console.log(products)}
-                        {
-                            deliveries.length>0
-                                ? (<Button
-                                    // type="submit"
-                                    variant="raised"
-                                    color="primary"
-                                    className={classes.button}
-                                    component={Link} to="/summary"
-                                >
-                                    Przejdź do podsumowania
-                                </Button>)
-                                :<Button
-                                    type="submit"
-                                    variant="raised"
-                                    className={classes.button}
-                                    onClick={event => this.handleSubmit(event)}
-                                >
-                                    Zapisz
-                                </Button>
-                        }
-
+                        <Button
+                            type="submit"
+                            variant="raised"
+                            className={classes.button}
+                            onClick={event => this.handleSubmit(event)}
+                        >
+                            Zapisz
+                        </Button>
                     </Paper>
                 {/*</form>*/}
 
@@ -327,9 +316,9 @@ class CustomizedInputs extends React.Component {
     }
 }
 
-CustomizedInputs.propTypes = {
+DeliveryData.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-CustomizedInputs = connect()(CustomizedInputs);
+DeliveryData = connect()(DeliveryData);
 
-export default withStyles(styles)(CustomizedInputs);
+export default withStyles(styles)(DeliveryData);

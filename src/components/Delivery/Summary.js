@@ -5,7 +5,6 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Moment from 'react-moment';
 import 'moment/locale/pl';
-import moment from 'moment';
 
 const styles = theme => ({
     root: theme.mixins.gutters({
@@ -25,8 +24,6 @@ class Summary extends React.Component{
                     <Typography variant="headline" component="h2">
                         Podsumowanie
                     </Typography>
-                    {/*{products.map(product=>())}*/}
-                    {deliveries.map(delivery=>console.log(delivery))}
                     <Typography variant="body1" gutterBottom >
                         Twoje zamówienie zostało przyjęte.<br/>
                         Planowana realizacja zamówienia<br/>

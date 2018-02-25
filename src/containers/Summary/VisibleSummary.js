@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Summary from '../../components/Summary/index';
+import Summary from '../../components/Delivery/Summary';
 
 
 const mapStateToProps = state => {
