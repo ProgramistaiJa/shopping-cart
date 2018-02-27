@@ -6,7 +6,7 @@ import {
 import Reboot from 'material-ui/Reboot';
 import './App.css';
 import Header from '../containers/Header/NumberProductsInCart'
-import Products from "./Products/index";
+import Products from "./AddProductsToCart/index";
 import ProductsList from '../containers/Products/VisibleProductLists'
 import DeliveryForm from '../containers/Deliveries/Delivery';
 import Summary from '../containers/Summary/VisibleSummary';
